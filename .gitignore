@@ -1,0 +1,5 @@
+cmake_build/
+
+.vs/
+
+source/CMakeSettings.json
