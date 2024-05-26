@@ -1,0 +1,161 @@
+\doxysection{C\+:/\+Users/etreh/\+Documents/\+Programming/\+Otus/\+C++\+\_\+\+Developer/\+Professional/lesson\+\_\+7/otus\+\_\+cpp\+\_\+prof\+\_\+hw4/source/print\+\_\+ip.cpp File Reference}
+\hypertarget{print__ip_8cpp}{}\label{print__ip_8cpp}\index{C:/Users/etreh/Documents/Programming/Otus/C++\_Developer/Professional/lesson\_7/otus\_cpp\_prof\_hw4/source/print\_ip.cpp@{C:/Users/etreh/Documents/Programming/Otus/C++\_Developer/Professional/lesson\_7/otus\_cpp\_prof\_hw4/source/print\_ip.cpp}}
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include $<$tuple$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structis__tuple}{is\+\_\+tuple$<$ Tuple $>$}}
+\begin{DoxyCompactList}\small\item\em Trait to determine if a type is a tuple. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structis__tuple_3_01std_1_1tuple_3_01_types_8_8_8_01_4_01_4}{is\+\_\+tuple$<$ std\+::tuple$<$ Types... $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Specialization of \doxylink{structis__tuple}{is\+\_\+tuple} for std\+::tuple types. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structis__same__type_3_01std_1_1tuple_3_01_type_01_4_01_4}{is\+\_\+same\+\_\+type$<$ std\+::tuple$<$ Type $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Specialization of \doxylink{structis__same__type}{is\+\_\+same\+\_\+type} for a tuple with a single type. This specialization sets the value to {\ttfamily true\+\_\+type} for a tuple with a single type. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structis__same__type_3_01std_1_1tuple_3_01_type_00_01_type_00_01_types_8_8_8_01_4_01_4}{is\+\_\+same\+\_\+type$<$ std\+::tuple$<$ Type, Type, Types... $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Recursive specialization of \doxylink{structis__same__type}{is\+\_\+same\+\_\+type} to check if all types in a tuple are the same. This specialization recursively checks each type in the tuple to ensure they are all the same. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structis__same__type_3_01std_1_1tuple_3_01_type_00_01_enother_type_00_01_types_8_8_8_01_4_01_4}{is\+\_\+same\+\_\+type$<$ std\+::tuple$<$ Type, Enother\+Type, Types... $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Specialization of \doxylink{structis__same__type}{is\+\_\+same\+\_\+type} for tuples with different types. This specialization sets the value to {\ttfamily false\+\_\+type} if any two types in the tuple are different. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::enable\+\_\+if$<$ std\+::is\+\_\+integral$<$ T $>$\+::value, void $>$\+::type \mbox{\hyperlink{print__ip_8cpp_af26f05fadbdba2382fb7600f6ba8795b}{print\+\_\+ip}} (T value)
+\begin{DoxyCompactList}\small\item\em Prints the IP address representation of an integral value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::enable\+\_\+if$<$ std\+::is\+\_\+same$<$ T, std\+::string $>$\+::value, void $>$\+::type \mbox{\hyperlink{print__ip_8cpp_aae8371439e16692edbf66724ef396a5a}{print\+\_\+ip}} (T value)
+\begin{DoxyCompactList}\small\item\em Prints the IP address representation of an string value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::enable\+\_\+if$<$ std\+::disjunction\+\_\+v$<$ std\+::is\+\_\+same$<$ T, std\+::vector$<$ typename\+T\+::value\+\_\+type $>$ $>$, std\+::is\+\_\+same$<$ T, std\+::list$<$ typename\+T\+::value\+\_\+type $>$ $>$ $>$, void $>$\+::type \mbox{\hyperlink{print__ip_8cpp_ad9997a25931527d343682b8169992bac}{print\+\_\+ip}} (const T \&container)
+\begin{DoxyCompactList}\small\item\em Prints the IP address representation of elements in a container. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Tuple , std\+::size\+\_\+t... index$>$ }\\void \mbox{\hyperlink{print__ip_8cpp_aaa5ceac3be9fde4c825dbabfae961de1}{print\+\_\+tuple}} (const Tuple \&t, std\+::index\+\_\+sequence$<$ index... $>$)
+\begin{DoxyCompactList}\small\item\em Prints the elements of a tuple as an IP address. This helper function prints each element of a tuple in dot-\/separated format. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Tuple $>$ }\\std\+::enable\+\_\+if$<$ \mbox{\hyperlink{structis__tuple}{is\+\_\+tuple}}$<$ Tuple $>$\+::value, void $>$\+::type \mbox{\hyperlink{print__ip_8cpp_aebdca554dd038788c16cd0417e9bf633}{print\+\_\+ip}} (const Tuple \&value)
+\begin{DoxyCompactList}\small\item\em Prints a tuple as an IP address if it contains elements of the same type. This function ensures that the tuple is printed only if all its elements are of the same type. This function uses {\ttfamily std\+::enable\+\_\+if} to ensure it is only instantiated with tuple types. It also uses a static assertion to ensure all elements in the tuple are of the same type. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{print__ip_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{print__ip_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{print\_ip.cpp@{print\_ip.cpp}!main@{main}}
+\index{main@{main}!print\_ip.cpp@{print\_ip.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{print__ip_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{print__ip_8cpp_ad9997a25931527d343682b8169992bac}\index{print\_ip.cpp@{print\_ip.cpp}!print\_ip@{print\_ip}}
+\index{print\_ip@{print\_ip}!print\_ip.cpp@{print\_ip.cpp}}
+\doxysubsubsection{\texorpdfstring{print\_ip()}{print\_ip()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{print__ip_8cpp_ad9997a25931527d343682b8169992bac} 
+template$<$typename T $>$ \\
+std\+::enable\+\_\+if$<$ std\+::disjunction\+\_\+v$<$ std\+::is\+\_\+same$<$ T, std\+::vector$<$ typename\+T\+::value\+\_\+type $>$ $>$, std\+::is\+\_\+same$<$ T, std\+::list$<$ typename\+T\+::value\+\_\+type $>$ $>$ $>$, void $>$\+::type print\+\_\+ip (\begin{DoxyParamCaption}\item[{const T \&}]{container}{}\end{DoxyParamCaption})}
+
+
+
+Prints the IP address representation of elements in a container. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the container. Must be either std\+::vector or std\+::list.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em container} & The container whose elements are to be printed as an IP address.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{print__ip_8cpp_aebdca554dd038788c16cd0417e9bf633}\index{print\_ip.cpp@{print\_ip.cpp}!print\_ip@{print\_ip}}
+\index{print\_ip@{print\_ip}!print\_ip.cpp@{print\_ip.cpp}}
+\doxysubsubsection{\texorpdfstring{print\_ip()}{print\_ip()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{print__ip_8cpp_aebdca554dd038788c16cd0417e9bf633} 
+template$<$typename Tuple $>$ \\
+std\+::enable\+\_\+if$<$ \mbox{\hyperlink{structis__tuple}{is\+\_\+tuple}}$<$ Tuple $>$\+::value, void $>$\+::type print\+\_\+ip (\begin{DoxyParamCaption}\item[{const Tuple \&}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Prints a tuple as an IP address if it contains elements of the same type. This function ensures that the tuple is printed only if all its elements are of the same type. This function uses {\ttfamily std\+::enable\+\_\+if} to ensure it is only instantiated with tuple types. It also uses a static assertion to ensure all elements in the tuple are of the same type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Tuple} & The type of the tuple.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The tuple to be printed.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{print__ip_8cpp_af26f05fadbdba2382fb7600f6ba8795b}\index{print\_ip.cpp@{print\_ip.cpp}!print\_ip@{print\_ip}}
+\index{print\_ip@{print\_ip}!print\_ip.cpp@{print\_ip.cpp}}
+\doxysubsubsection{\texorpdfstring{print\_ip()}{print\_ip()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{print__ip_8cpp_af26f05fadbdba2382fb7600f6ba8795b} 
+template$<$typename T $>$ \\
+std\+::enable\+\_\+if$<$ std\+::is\+\_\+integral$<$ T $>$\+::value, void $>$\+::type print\+\_\+ip (\begin{DoxyParamCaption}\item[{T}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Prints the IP address representation of an integral value. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the input value. Must be an integral type\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The integral value to be printed as an IP address.\\
+\hline
+\end{DoxyParams}
+
+
+Example usage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{print__ip_8cpp_af26f05fadbdba2382fb7600f6ba8795b}{print\_ip}}(int8\_t\{-\/1\});\ \textcolor{comment}{//\ 255}}
+\DoxyCodeLine{\mbox{\hyperlink{print__ip_8cpp_af26f05fadbdba2382fb7600f6ba8795b}{print\_ip}}(int16\_t\{0\});\ \textcolor{comment}{//\ 0.0}}
+\DoxyCodeLine{\mbox{\hyperlink{print__ip_8cpp_af26f05fadbdba2382fb7600f6ba8795b}{print\_ip}}(int32\_t\{2130706433\});\ \textcolor{comment}{//\ 127.0.0.1}}
+\DoxyCodeLine{\mbox{\hyperlink{print__ip_8cpp_af26f05fadbdba2382fb7600f6ba8795b}{print\_ip}}(int64\_t\{8875824491850138409\});\textcolor{comment}{//\ 123.45.67.89.101.112.131.41}}
+
+\end{DoxyCode}
+ \Hypertarget{print__ip_8cpp_aae8371439e16692edbf66724ef396a5a}\index{print\_ip.cpp@{print\_ip.cpp}!print\_ip@{print\_ip}}
+\index{print\_ip@{print\_ip}!print\_ip.cpp@{print\_ip.cpp}}
+\doxysubsubsection{\texorpdfstring{print\_ip()}{print\_ip()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{print__ip_8cpp_aae8371439e16692edbf66724ef396a5a} 
+template$<$typename T $>$ \\
+std\+::enable\+\_\+if$<$ std\+::is\+\_\+same$<$ T, std\+::string $>$\+::value, void $>$\+::type print\+\_\+ip (\begin{DoxyParamCaption}\item[{T}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Prints the IP address representation of an string value. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the input value. Must be an string type\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The string value to be printed as an IP address.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{print__ip_8cpp_aaa5ceac3be9fde4c825dbabfae961de1}\index{print\_ip.cpp@{print\_ip.cpp}!print\_tuple@{print\_tuple}}
+\index{print\_tuple@{print\_tuple}!print\_ip.cpp@{print\_ip.cpp}}
+\doxysubsubsection{\texorpdfstring{print\_tuple()}{print\_tuple()}}
+{\footnotesize\ttfamily \label{print__ip_8cpp_aaa5ceac3be9fde4c825dbabfae961de1} 
+template$<$typename Tuple , std\+::size\+\_\+t... index$>$ \\
+void print\+\_\+tuple (\begin{DoxyParamCaption}\item[{const Tuple \&}]{t}{, }\item[{std\+::index\+\_\+sequence$<$ index... $>$}]{}{}\end{DoxyParamCaption})}
+
+
+
+Prints the elements of a tuple as an IP address. This helper function prints each element of a tuple in dot-\/separated format. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Tuple} & The type of the tuple.\\
+\hline
+{\em ...\+index} & The indices of the tuple elements.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The tuple to be printed.\\
+\hline
+\end{DoxyParams}
